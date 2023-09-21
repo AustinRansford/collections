@@ -22,9 +22,10 @@ public class MyStack
      * @param element is the int value pushed onto the stack
      */
     public void push(int element){
-        array[size] = element;
-        size++;
-        // next class check if full first 
+        if(!isFull()){
+            array[size] = element;
+            size++;
+        }
     }
     /**
      * pops an element off of the stack 
@@ -32,9 +33,12 @@ public class MyStack
      * @return the int value that is taken off of the stack 
      */
     public int pop(){
-        size--;
-        return array[size-1];
-        // next class check if empty or not 
+        if(!isEmpty()){
+            size--;
+            return array[size];
+        }
+        return -1; 
+        // what should I return here??
     }
     /**
      * Indicates whether stack contains any elements
@@ -42,14 +46,14 @@ public class MyStack
      * @return returns true if stack is empty and false if stack is not
      */
     public boolean isEmpty(){
-        return size==0;
+        return size == 0;
     }
     /**
      * reads the element at the top of the stack 
      * @return returns the element at the top of the stack
      */
     public int top(){
-        return array[size];
+        return array[size-1];
     }
     /**
      * indicates the length of the stack
@@ -59,7 +63,7 @@ public class MyStack
         return size;
     }
     public boolean isFull(){
-        return size==array.length;
+        return size == array.length;
     }
     /**
      * returns the contents of the stack from top to bottom
@@ -68,7 +72,7 @@ public class MyStack
      */
     public String toString(){
         String toString = "";
-        for(int i = size-1; i > 0; i--)
+        for(int i = size-1; i >= 0; i--)
         {
             toString += array[i] + ", ";
         }

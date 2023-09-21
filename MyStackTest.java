@@ -33,12 +33,20 @@ public class MyStackTest
         System.out.println("isEmpty is false when not empty: " 
                                 + test.isEmpty());
         System.out.println("value popped off (3):" + test.pop());
+        System.out.println("pop returns -1 when stack is empty: " + test.pop());
         System.out.println("isEmpty is true when empty: " + test.isEmpty());
         test.push(1);
         test.push(2);
-        test.push(3);
+        test.push(5);
         System.out.println("isFull is true when full: " + test.isFull());
-        
+        System.out.println(test);
+        test.push(4);
+        System.out.println("nothing is pushed when stack is full." +
+                                " ie 4 should not appear in the stack");
+        System.out.println(test);
+        System.out.println("size equals length (3): " + test.size());
+        System.out.println("top equals the most recent term (5): " + test.top());
+        System.out.println(test);
         
         
         

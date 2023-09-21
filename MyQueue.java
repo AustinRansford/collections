@@ -16,16 +16,21 @@ public class MyQueue
      */
     public MyQueue()
     {
-        array= new int[10];
+        array= new int[3];
     }
     public void enqueue(int element){
-        array[(size + front) % array.length] = element;
-        size++;
+        if (!isFull()){
+            array[(size + front) % array.length] = element;
+            size++;
+        }
     }
     public int dequeue(){
-        front++;
-        size--;
-        return array[(front-1)%array.length];
+        if(!isEmpty()){
+            front++;
+            size--;
+            return array[(front-1)% array.length];
+        }
+        return -1; 
     }
     public boolean isEmpty(){
         return size == front % array.length;
@@ -41,9 +46,8 @@ public class MyQueue
     }
     public String toString(){
         String toString = "";
-        for(int i = front % array.length; i < front % array.length + size -1;
-                i++){
-            toString += array[i] + ", ";
+        for(int i = front; i < front + size ; i++){
+            toString += array[i % array.length] + ", ";
         }
         return toString; 
     }
