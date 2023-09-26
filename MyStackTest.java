@@ -1,9 +1,9 @@
 
 /**
- * Write a description of class MyStackTest here.
+ * tests the MyStack abtract data type/class
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Austin Ransford
+ * @version 9-26-2023
  */
 public class MyStackTest
 {
@@ -15,8 +15,6 @@ public class MyStackTest
      */
     public MyStackTest()
     {
-        // initialise instance variables
-        x = 0;
     }
 
     /**
@@ -25,15 +23,16 @@ public class MyStackTest
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
-    public void stackTest(){
-        MyStack test = new MyStack();
+    public void stackIntTest(){
+        MyStack<Integer> test = new MyStack<Integer>();
         System.out.println("isEmpty is true when empty: " + test.isEmpty());
         test.push(3);
         System.out.println("print when stack has one value 3: " + test);
         System.out.println("isEmpty is false when not empty: " 
                                 + test.isEmpty());
         System.out.println("value popped off (3):" + test.pop());
-        System.out.println("pop returns -1 when stack is empty: " + test.pop());
+        //System.out.println("pop returns -1 when stack is empty: " + test.pop());
+        // popped when empty and threw exception
         System.out.println("isEmpty is true when empty: " + test.isEmpty());
         test.push(1);
         test.push(2);
@@ -51,5 +50,17 @@ public class MyStackTest
         
         
         
+    }
+    public void stackStringTest(){
+        MyStack<String> test = new MyStack<String>();
+        
+        test.push("a");
+        test.push("b");
+        System.out.println(test);
+        System.out.println("should print b: " + test.pop());
+        test.push("c");
+        test.push("d");
+        test.push("e");
+        System.out.println("Should print (d, c, a) e should not appear: " + test);
     }
 }

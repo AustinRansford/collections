@@ -1,29 +1,30 @@
 
 /**
- * Write a description of class collections here.
+ * Creates an data structure that adds values to the top and then 
+ * takes values from the top
  *
  * @author Austin Ransford
- * @version 9/19/2023
+ * @version 9/26/2023
  */
-public class MyStack
+public class MyStack<E>
 {
     // instance variables - replace the example below with your own
     private int size = 0;
-    private int[] array;
+    private E[] stack;
     /**
      * Constructor for objects of MyStack collections
      */
     public MyStack(){
-        array = new int[3];
+        stack =(E[]) new Object[3];
     }
     /**
      * pushes an element on to the stack 
      * 
      * @param element is the int value pushed onto the stack
      */
-    public void push(int element){
+    public void push(E element){
         if(!isFull()){
-            array[size] = element;
+            stack[size] = element;
             size++;
         }
     }
@@ -32,12 +33,12 @@ public class MyStack
      * 
      * @return the int value that is taken off of the stack 
      */
-    public int pop(){
+    public E pop(){
         if(!isEmpty()){
             size--;
-            return array[size];
+            return stack[size];
         }
-        return -1; 
+        return stack[-1]; 
         // what should I return here??
     }
     /**
@@ -52,8 +53,8 @@ public class MyStack
      * reads the element at the top of the stack 
      * @return returns the element at the top of the stack
      */
-    public int top(){
-        return array[size-1];
+    public E top(){
+        return stack[size-1];
     }
     /**
      * indicates the length of the stack
@@ -63,7 +64,7 @@ public class MyStack
         return size;
     }
     public boolean isFull(){
-        return size == array.length;
+        return size == stack.length;
     }
     /**
      * returns the contents of the stack from top to bottom
@@ -74,7 +75,7 @@ public class MyStack
         String toString = "";
         for(int i = size-1; i >= 0; i--)
         {
-            toString += array[i] + ", ";
+            toString += stack[i] + ", ";
         }
         return toString;
     }

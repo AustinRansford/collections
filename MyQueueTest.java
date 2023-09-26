@@ -2,13 +2,12 @@
 /**
  * Write a description of class MyQueueTest here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Austin Ransford
+ * @version 9-26-2023
  */
 public class MyQueueTest
 {
-    // instance variables - replace the example below with your own
-    private int x;
+
 
     /**
      * Constructor for objects of class MyQueueTest
@@ -16,7 +15,6 @@ public class MyQueueTest
     public MyQueueTest()
     {
         // initialise instance variables
-        x = 0;
     }
 
     /**
@@ -25,11 +23,12 @@ public class MyQueueTest
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
-    public void myQueueTest(){
-        MyQueue test = new MyQueue();
+    public void myQueueIntegerTest(){
+        MyQueue<Integer> test = new MyQueue<Integer>();
         System.out.println("isEmpty is true when empty: " + test.isEmpty());
-        System.out.println("dequeue should return -1 when queue is empty (-1): "
-                                + test.dequeue());
+        // System.out.println("dequeue should return -1 when queue is empty (-1): "
+        //                        + test.dequeue());
+        // sucessfully attempted to throw an exception 
         test.enqueue(1);
         test.enqueue(2);
         test.enqueue(3);
@@ -47,5 +46,20 @@ public class MyQueueTest
         test.enqueue(5);
         System.out.println("when full no values can be added"
                                 + " (value 5 shouldn't appear in the queue) " + test);
+    }
+    
+    public void myQueueStringTest(){
+        MyQueue<String> test = new MyQueue<String>();
+        
+        test.enqueue("a");
+        test.enqueue("b");
+        System.out.println(test);
+        System.out.println("should print ( a, b,) : " + test);
+        test.enqueue("c");
+        test.enqueue("d");
+        System.out.println("should print (a,b,c) d should not appear: " + test);
+        System.out.println("should print and remove a: " + test.dequeue());
+        System.out.println(test);
+        
     }
 }
