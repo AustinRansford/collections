@@ -1,3 +1,4 @@
+import java.util.EmptyStackException;
 
 /**
  * Creates an data structure that adds values to the top and then 
@@ -8,15 +9,16 @@
  */
 public class MyStack<E>
 {
-    // instance variables - replace the example below with your own
     private int size = 0;
     private E[] stack;
+    
     /**
      * Constructor for objects of MyStack collections
      */
     public MyStack(){
         stack =(E[]) new Object[3];
     }
+    
     /**
      * pushes an element on to the stack 
      * 
@@ -28,19 +30,23 @@ public class MyStack<E>
             size++;
         }
     }
+    
     /**
      * pops an element off of the stack 
      * 
      * @return the int value that is taken off of the stack 
      */
-    public E pop(){
-        if(!isEmpty()){
+    public E pop() throws EmptyStackException {
+        if (isEmpty()){
+            throw new EmptyStackException();
+        
+        }else{
+            stack[size] = null;
             size--;
             return stack[size];
         }
-        return stack[-1]; 
-        // what should I return here??
     }
+    
     /**
      * Indicates whether stack contains any elements
      * 
@@ -49,6 +55,7 @@ public class MyStack<E>
     public boolean isEmpty(){
         return size == 0;
     }
+    
     /**
      * reads the element at the top of the stack 
      * @return returns the element at the top of the stack
@@ -56,6 +63,7 @@ public class MyStack<E>
     public E top(){
         return stack[size-1];
     }
+    
     /**
      * indicates the length of the stack
      * @param returns the size of the stack 
@@ -63,9 +71,15 @@ public class MyStack<E>
     public int size(){
         return size;
     }
+    
+    /**
+     * returns true if the stack is full
+     * @return true if full false otherwise
+     */
     public boolean isFull(){
         return size == stack.length;
     }
+    
     /**
      * returns the contents of the stack from top to bottom
      * @return returns each integer seperated by a space and a comma

@@ -11,7 +11,8 @@ public class MyQueue<E>
     // instance variables - replace the example below with your own
     private int size = 0;
     private int front = 0;
-    private E[] queue; 
+    private E[] queue;
+    
     /**
      * Constructor for objects of class MyQueue
      */
@@ -19,6 +20,7 @@ public class MyQueue<E>
     {
         queue =(E[]) new Object[3];
     }
+    
     /**
      * adds an element to the queue 
      * 
@@ -30,6 +32,7 @@ public class MyQueue<E>
             size++;
         }
     }
+    
     /**
      * removes the element in the front of the queue
      * 
@@ -44,6 +47,7 @@ public class MyQueue<E>
         }
         return queue[-1]; 
     }
+    
     /**
      *  Indicates whether queue contains any elements
      *  
@@ -52,6 +56,7 @@ public class MyQueue<E>
     public boolean isEmpty(){
         return size == front % queue.length;
     }
+    
     /**
      *  Reads the element at the front of the queue
      *  
@@ -60,6 +65,7 @@ public class MyQueue<E>
     public E front(){
         return queue[front % queue.length]; 
     }
+    
     /**
      * Returns the number of elements stored in the queue
      * 
@@ -68,6 +74,7 @@ public class MyQueue<E>
     public int size(){
         return size; 
     }
+    
     /**
      * Indicates whether the queue has exhausted its available storage
      * 
@@ -76,6 +83,7 @@ public class MyQueue<E>
     public boolean isFull(){
         return size == queue.length;
     }
+    
     /**
      * Returns the contents of the queue from front to back 
      * 
