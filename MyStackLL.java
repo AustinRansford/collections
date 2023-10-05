@@ -7,16 +7,15 @@ import java.util.EmptyStackException;
  * @author Austin Ransford
  * @version 9/26/2023
  */
-public class MyStack<E>
+public class MyStackLL<E>
 {
-    private int size = 0;
-    private E[] stack;
+    private MyLinkedList<E> stack;
     
     /**
-     * Constructor for objects of MyStack collections
+     * Constructor for objects of MyStackLL collections
      */
-    public MyStack(){
-        stack =(E[]) new Object[3];
+    public MyStackLL(){
+        stack = new MyLinkedList<E>();
     }
     
     /**
@@ -25,10 +24,7 @@ public class MyStack<E>
      * @param element is the int value pushed onto the stack
      */
     public void push(E element){
-        if(!isFull()){
-            stack[size] = element;
-            size++;
-        }
+        stack.addHead(element);
     }
     
     /**
@@ -36,15 +32,8 @@ public class MyStack<E>
      * 
      * @return the value that is taken off of the stack 
      */
-    public E pop() throws EmptyStackException {
-        if (isEmpty()){
-            throw new EmptyStackException();
-        
-        } else{
-            stack[size] = null;
-            size--;
-            return stack[size];
-        }
+    public E pop() {
+        return stack.removeHead();
     }
     
     /**
@@ -52,32 +41,24 @@ public class MyStack<E>
      * 
      * @return returns true if stack is empty and false if stack is not
      */
-    public boolean isEmpty(){
-        return size == 0;
+    public boolean isEmpty() {
+        return stack.isEmpty();
     }
     
     /**
      * reads the element at the top of the stack 
      * @return returns the element at the top of the stack
      */
-    public E top(){
-        return stack[size-1];
+    public E top() {
+        return stack.getHead();
     }
     
     /**
      * indicates the length of the stack
      * @param returns the size of the stack 
      */
-    public int size(){
-        return size;
-    }
-    
-    /**
-     * returns true if the stack is full
-     * @return true if full false otherwise
-     */
-    public boolean isFull(){
-        return size == stack.length;
+    public int size() {
+        return stack.size();
     }
     
     /**
@@ -85,13 +66,8 @@ public class MyStack<E>
      * @return returns each integer seperated by a space and a comma
      * in the stack from the top to the bottom 
      */
-    public String toString(){
-        String toString = "";
-        for(int i = size-1; i >= 0; i--)
-        {
-            toString += stack[i] + ", ";
-        }
-        return toString;
+    public String toString() {
+        return stack.toString();
     }
 }
 
