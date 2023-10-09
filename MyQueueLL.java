@@ -8,14 +8,12 @@
  */
 public class MyQueueLL<E>
 {
-    // instance variables - replace the example below with your own
     private MyLinkedList<E> queue;
     
     /**
      * Constructor for objects of class MyQueueLL
      */
-    public MyQueueLL()
-    {
+    public MyQueueLL() {
         queue = new MyLinkedList<E>();
     }
     
@@ -24,7 +22,7 @@ public class MyQueueLL<E>
      * 
      * @param element is the element added to the queue
      */
-    public void enqueue(E element){
+    public void enqueue(E element) {
         queue.addTail(element);
     }
     
@@ -34,7 +32,7 @@ public class MyQueueLL<E>
      * @return  if the queue is full the method returns the value of the removed value,
      *          otherwise it throws an exception
      */
-    public E dequeue(){
+    public E dequeue() {
         return queue.removeHead(); 
     }
     
@@ -43,7 +41,7 @@ public class MyQueueLL<E>
      *  
      *  @return true if the queue is empty false if not
      */
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return queue.isEmpty();
     }
     
@@ -52,7 +50,7 @@ public class MyQueueLL<E>
      *  
      *  @return element at the front of the queue
      */
-    public E front(){
+    public E front() {
         return queue.getHead();
     }
     
@@ -61,7 +59,7 @@ public class MyQueueLL<E>
      * 
      * @return the size of the queue
      */
-    public int size(){
+    public int size() {
         return queue.size(); 
     }
     
@@ -70,11 +68,7 @@ public class MyQueueLL<E>
      * 
      * @return the content of the queue
      */
-    public String toString(){
+    public String toString() {
         return queue.toString(); 
     }
-    
-    
-
-    
 }

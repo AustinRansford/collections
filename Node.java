@@ -7,7 +7,6 @@
  */
 public class Node<E>
 {
-    // instance variables - replace the example below with your own
     private E data;
     private Node<E> next;
 
@@ -19,23 +18,39 @@ public class Node<E>
     }
 
     /**
-     * An example of a method - replace this comment with your own
+     * this is a getter method of the class variable data.
      *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * @return    the data stored in the node. type E. 
      */
     public E getData() {
         return data;
     }
     
+    /**
+     * this is a getter method for the class variable next of type Node<E>
+     * 
+     * @return returns the  pointer to another node. "the next node"
+     */
     public Node<E> getNext() {
         return next; 
     }
     
+    /** 
+     * this is a setter method for the class variable data.
+     * 
+     * @param   data is the value that will be set to the the class 
+     *          variable data.
+     */
     public void setData(E data) {
         this.data = data; 
     }
     
+    /**
+     * this is a setter method for the class variable next.
+     * 
+     * @param   a Node<E> is passed in that will be the class variable next will
+     *          be set to. 
+     */
     public void setNext(Node<E> newNode) {
         next = newNode; 
     }

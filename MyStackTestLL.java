@@ -7,23 +7,13 @@
  */
 public class MyStackTestLL
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
-    /**
-     * Constructor for objects of class MyStackTestLL
-     */
-    public MyStackTestLL()
-    {
-    }
-
     /**
      * An example of a method - replace this comment with your own
      *
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
-    public void stackIntTest(){
+    public void stackIntTest() {
         MyStackLL<Integer> test = new MyStackLL<Integer>();
         System.out.println("isEmpty is true when empty: " + test.isEmpty());
         test.push(3);
@@ -33,13 +23,13 @@ public class MyStackTestLL
         System.out.println("value popped off (3):" + test.pop());
         //System.out.println("pop returns -1 when stack is empty: " + test.pop());
         // popped when empty and threw exception
-        System.out.println("Size = 3: " + test.size());
+        System.out.println("Size = 0: " + test.size());
         System.out.println("isEmpty is true when empty: " + test.isEmpty());
         test.push(1);
-        System.out.println("Size = 2: " + test.size());
+        System.out.println("Size = 1: " + test.size());
         test.push(2);
         test.push(5);
-        System.out.println("Size = 0: " + test.size());
+        System.out.println("Size = 3: " + test.size());
         
         System.out.println(test);
         test.push(4);
@@ -52,7 +42,8 @@ public class MyStackTestLL
         
         
     }
-    public void stackStringTest(){
+    
+    public void stackStringTest() {
         MyStackLL<String> test = new MyStackLL<String>();
         
         test.push("a");
@@ -62,6 +53,6 @@ public class MyStackTestLL
         test.push("c");
         test.push("d");
         test.push("e");
-        System.out.println("Should print (d, c, a, e): " + test);
+        System.out.println("Should print (e, d, c, a): " + test);
     }
 }

@@ -14,7 +14,7 @@ public class MyStackLL<E>
     /**
      * Constructor for objects of MyStackLL collections
      */
-    public MyStackLL(){
+    public MyStackLL() {
         stack = new MyLinkedList<E>();
     }
     
@@ -23,7 +23,7 @@ public class MyStackLL<E>
      * 
      * @param element is the int value pushed onto the stack
      */
-    public void push(E element){
+    public void push(E element) {
         stack.addHead(element);
     }
     
@@ -47,6 +47,7 @@ public class MyStackLL<E>
     
     /**
      * reads the element at the top of the stack 
+     * 
      * @return returns the element at the top of the stack
      */
     public E top() {
@@ -55,6 +56,7 @@ public class MyStackLL<E>
     
     /**
      * indicates the length of the stack
+     * 
      * @param returns the size of the stack 
      */
     public int size() {
@@ -63,6 +65,7 @@ public class MyStackLL<E>
     
     /**
      * returns the contents of the stack from top to bottom
+     * 
      * @return returns each integer seperated by a space and a comma
      * in the stack from the top to the bottom 
      */

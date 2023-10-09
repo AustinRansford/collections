@@ -8,7 +8,6 @@ import java.util.NoSuchElementException;
  */
 public class MyLinkedList<E>
 {
-    // instance variables - replace the example below with your own
     private Node<E> head; 
 
     /**
@@ -19,25 +18,35 @@ public class MyLinkedList<E>
     }
 
     /**
-     * An example of a method - replace this comment with your own
+     * the add head method adds a node to the front of the LinkedList. If a 
+     * head exists then the orignal head is now pointed to by the new head
+     * containing data, thus making the old head the second item in the list.
      *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * @param data is the E value that will be stored in the new node that 
+     * will be added to the Linked List
      */
     public void addHead(E data) {
         Node newNode = new Node(data);
-        if(head == null) {
+        
+        if (head == null) {
             head = newNode;
-        } else{
+        } else {
             newNode.setNext(head);
             head = newNode;
         }
     }
     
+    /**
+     * this method removes the head of the LinkedList and replaces it with the 
+     * node taht the head was pointing to. if head is null then the method 
+     * throws and exception
+     * 
+     * @return returns the data store in the head node.
+     */
     public E removeHead() throws NoSuchElementException {
         if (head == null) {
             throw new NoSuchElementException(); 
-        } else{
+        } else {
             E returnedData = head.getData();
             Node temp;
             temp = head;
@@ -47,12 +56,20 @@ public class MyLinkedList<E>
         }
     }
     
+    /**
+     * this method adds a node to the end of the linkedlist with the parameter 
+     * data soted in it.
+     * 
+     * @param   data is the value stored in the node that will be appended to the 
+     *          end of the linkedlist
+     */
     public void addTail(E data) {
-        if(head == null) {
+        if (head == null) {
             addHead(data);
         } else {
             Node newNode = new Node(data);
             Node currentNode = head;
+            
             while(currentNode.getNext() != null) {
                 currentNode = currentNode.getNext();
             }
@@ -60,10 +77,21 @@ public class MyLinkedList<E>
         }
     }
     
+    /**
+     * this method determines if the linked list is empty or not
+     * 
+     * @return returns true if empty returns false if not.
+     */
     public boolean isEmpty() {
         return head == null;
     }
     
+    /** 
+     * this method returns the value of the data in the head node of the 
+     * linked list.
+     * 
+     * @return the value of the data of the head is returned
+     */
     public E getHead() throws NoSuchElementException {
         if (head.getData() == null) {
             throw new NoSuchElementException();
@@ -72,14 +100,21 @@ public class MyLinkedList<E>
         }
     }
     
+    /**
+     * this method returns the size of the of the Linked List  y counting 
+     *  the amount of node included in it
+     *  
+     * @return an int value represnting the lenght of the linked list
+     */
     public int size() {
         int size = 0;
-        if(head == null)
-        {
+        
+        if (head == null) {
             return size;
         } else {
             size++;
             Node currentNode = head;
+            
             while(currentNode.getNext() != null) {
                 size++;
                 currentNode = currentNode.getNext();
@@ -88,9 +123,16 @@ public class MyLinkedList<E>
         }
     }
     
+    /**
+     * returns a string that has all of the values of from the data in each 
+     * individual node of the Linked list
+     * 
+     * @return string that has all of the values of the linked list.
+     */
     public String toString() {
         String toString = "";
         Node currentNode = head;
+        
         while (currentNode != null) {
             toString += currentNode.getData() + ", ";
             currentNode = currentNode.getNext();

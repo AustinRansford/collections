@@ -7,22 +7,6 @@
  */
 public class MyQueueLLTest
 {
-
-
-    /**
-     * Constructor for objects of class MyQueueLLTest
-     */
-    public MyQueueLLTest()
-    {
-        // initialise instance variables
-    }
-
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
     public void myQueueIntegerTest(){
         MyQueueLL<Integer> test = new MyQueueLL<Integer>();
         System.out.println("isEmpty is true when empty: " + test.isEmpty());
@@ -38,8 +22,7 @@ public class MyQueueLLTest
                                 + test.front());
         System.out.println("dequeue removes the front value (1): " + test.dequeue());
         System.out.println("dequeue works at basic level (2,3): " + test);
-        test.enqueue(4);
-        System.out.println("size returns the correct size (3): " + test.size());
+        System.out.println("size returns the correct size (2): " + test.size());
         test.enqueue(5);
     }
     
@@ -53,6 +36,7 @@ public class MyQueueLLTest
         test.enqueue("c");
         test.enqueue("d");
         System.out.println("should print (a,b,c,d): " + test);
+        System.out.println("size 4: " + test.size());
         System.out.println("should print and remove a: " + test.dequeue());
         System.out.println(test);
         
