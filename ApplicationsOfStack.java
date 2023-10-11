@@ -5,40 +5,44 @@
  * @author (your name)
  * @version (a version number or a date)
  */
-public class ApplicationsOfStack<E>
+public class ApplicationsOfStack
 {
-    private MyStackLL<E> stack;
+    //private MyStackLL<String> stack;
 
     /**
      * Constructor for objects of class ApplicationsOfStack
      */
     public ApplicationsOfStack() {
-        stack = new MyStackLL<E>();
+        //stack = new MyStackLL<String>();
     }
 
     public boolean expressions(String text) {
         String openChars = "{([";
-        String closedChars = " })]";
-        MyStackLL stack = new MyStackLL();
+        String closedChars = "})]";
+        MyStackLL<String> stack = new MyStackLL<String>();
+        
         for(int i = 0; i < text.length(); i++) {
-            if (openChars.indexOf(text.substring(i, i + 1)) != -1) {
+            String currentChar = text.substring(i,i+1);
+            
+            if (openChars.indexOf(currentChar) != -1) { // if the char = {, (, or [ push that val on stack
                 stack.push(text.substring(i,i+1)); 
-            } else if (closedChars.indexOf(text.substring(i, i + 1)) != -1) {
-                int index = closedChars.indexOf(text.substring(i, i + 1));
+            } else if (closedChars.indexOf(currentChar) != -1) { // if char = }, ), ] pop the corresposing val off
+                int index = closedChars.indexOf(currentChar);
+                
                 // the index of endChars and openChars will have matching values  if the expressions
                 // are the same. ie ( index = 0 and ) index = 0 so taking the substring of the
                 // other at that index reveals if the expressions are equal and oppisite
-                System.out.println(stack);
-                if (stack.isEmpty()) {
+                
+                if (stack.isEmpty()) { //meaning no open char is in stack and there cant be matches
                     return false;
-                } else if (index == openChars.indexOf(stack.top())) {
+                } else if (index != openChars.indexOf(stack.top())) { //if the stack's isnt opisite of the open char -> false
                     return false;
                 } else {
                     stack.pop();
                 }
             }
         }
-        System.out.println(stack.size());
+        
         if (stack.size() == 0){
             return true; 
         } else {
