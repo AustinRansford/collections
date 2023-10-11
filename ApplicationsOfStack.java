@@ -57,4 +57,30 @@ public class ApplicationsOfStack
         System.out.println(expressions(failedExpression));
             
     }
+    
+    public void reverseStack(MyQueueLL<String> queue) { 
+        MyStackLL<String> stack = new MyStackLL<String>();
+        
+        while (!queue.isEmpty()) {
+            String currentString = queue.dequeue();
+            stack.push(currentString);
+        }
+        
+        String reversedText = "";
+        
+        while (!stack.isEmpty()) {
+            reversedText += stack.pop(); 
+        }
+        
+        System.out.println(reversedText);
+    }
+
+    public void reverseStackTest() {
+        MyQueueLL<String> queue = new MyQueueLL<String>();
+        queue.enqueue("Hey");
+        queue.enqueue("Man");
+        queue.enqueue("what's");
+        queue.enqueue("up");
+        reverseStack(queue);
+    }
 }
