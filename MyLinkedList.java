@@ -9,12 +9,15 @@ import java.util.NoSuchElementException;
 public class MyLinkedList<E>
 {
     private Node<E> head; 
+    private Node<E> tail;
+    private int size;
 
     /**
      * Constructor for objects of class MyLinkedList
      */
     public MyLinkedList() {
         head = null;
+        tail = null;
     }
 
     /**
@@ -34,6 +37,7 @@ public class MyLinkedList<E>
             newNode.setNext(head);
             head = newNode;
         }
+        size++;
     }
     
     /**
@@ -54,6 +58,7 @@ public class MyLinkedList<E>
             temp.setNext(null); //for garbage collection
             return returnedData;
         }
+        size--;
     }
     
     /**
@@ -64,17 +69,61 @@ public class MyLinkedList<E>
      *          end of the linkedlist
      */
     public void addTail(E data) {
-        if (head == null) {
+        if (tail == null) {
             addHead(data);
         } else {
             Node newNode = new Node(data);
-            Node currentNode = head;
-            
-            while(currentNode.getNext() != null) {
+            tail.setNext(newNode);
+            tail = tail.getNext();
+        }
+        size++;
+    }
+    
+    public E get(int index) throws NoSuchElementException {
+        Node<E> currentNode = head;
+        for (int i = 0; i < index; i++) {
+            if (currentNode.getNext() == null){
+                throw new NoSuchElementException();
+            } else {
                 currentNode = currentNode.getNext();
             }
-            currentNode.setNext(newNode);
         }
+        return currentNode.getData();
+    }
+    
+    public E remove(int index) throws NoSuchElementException {
+        Node<E> currentNode = head;
+        for (int i = 0; i < index; i++){
+            if (currentNode.getNext() == null){
+                throw new NoSuchElementException();
+            } else { 
+                currentNode = currentNode.getNext();
+            }
+        }
+        Node<E> temp = currentNode.getNext();
+        currentNode.setNext(temp.getNext());
+        temp.setNext(null);
+        size--;
+        return temp.getData();
+    }
+    
+    public void add(int index, E element) {
+        if (index > size || index < 0){
+            throw new NoSuchElementException();
+        }
+        if (index == size){
+            addTail(element);
+        } else {
+            Node<E> currentNode = head;
+            for (int i = 0; i < index; i++) {
+                currentNode = currentNode.getNext();
+            }
+            Node<E> newNode = currentNode.getNext(); // not finished
+            currentNode.setNext(temp.getNext());
+            temp.setNext(null);
+            size++;
+        }
+        
     }
     
     /**
@@ -91,6 +140,7 @@ public class MyLinkedList<E>
      * linked list.
      * 
      * @return the value of the data of the head is returned
+     * @throws NoSuchElementException if head is null
      */
     public E getHead() throws NoSuchElementException {
         if (head.getData() == null) {
@@ -107,20 +157,7 @@ public class MyLinkedList<E>
      * @return an int value represnting the lenght of the linked list
      */
     public int size() {
-        int size = 0;
-        
-        if (head == null) {
-            return size;
-        } else {
-            size++;
-            Node currentNode = head;
-            
-            while(currentNode.getNext() != null) {
-                size++;
-                currentNode = currentNode.getNext();
-            }
-            return size;
-        }
+        return size;
     }
     
     /**
