@@ -46,4 +46,31 @@ public class MyLinkedListTest
         System.out.println("does remove head work should return 2: " + test.removeHead());
         System.out.println(" should print out 1, 3: " + test);
     }
+    
+    public void enhancementTesting(){
+        MyLinkedList<Integer> test = new MyLinkedList<Integer>();
+        test.add(1);
+        test.add(5);
+        test.add(10);
+        System.out.println("Should print 1, 5, 10");
+        System.out.println(test.size());
+        System.out.println(test);
+        test.add(1, 3);
+        System.out.println("Should add 3 between 1 and 5 index(1)");
+        System.out.println(test.size());
+        System.out.println(test);
+        test.add(4, 15);
+        System.out.println("Should add to end index(4)");
+        System.out.println(test.size());
+        System.out.println(test);
+        test.remove(2);
+        System.out.println("Should remove 5 as it is the 2nd index");
+        System.out.println(test.size());
+        System.out.println(test);
+        System.out.println("get the value at index 2 (10): " + test.get(2));
+        System.out.println("remove the last int (index = 2, val = 10: " + test.remove(2));
+        System.out.println(test);
+        test.set(0, -1);
+        System.out.println(test);
+    }
 }
