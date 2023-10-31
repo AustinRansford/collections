@@ -6,7 +6,7 @@ import java.util.NoSuchElementException;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class MyLinkedList<E>
+public class MyLinkedList<E extends Comparable<E>>
 {
     private Node<E> head; 
     private Node<E> tail;
@@ -21,15 +21,13 @@ public class MyLinkedList<E>
     }
 
     /**
-     * the add head method adds a node to the front of the LinkedList. If a 
-     * head exists then the orignal head is now pointed to by the new head
-     * containing data, thus making the old head the second item in the list.
+     * adds a node to the front of the LinkedList.
      *
-     * @param data is the E value that will be stored in the new node that 
+     * @param data E value that will be stored in the new node that 
      * will be added to the Linked List
      */
     public void addHead(E data) {
-        Node newNode = new Node(data);
+        Node<E> newNode = new Node(data);
         
         if (head == null) {
             head = newNode;
@@ -42,7 +40,7 @@ public class MyLinkedList<E>
     }
     
     /**
-     * this method removes the head of the LinkedList and replaces it with the 
+     * removes the head of the LinkedList and replaces it with the 
      * node taht the head was pointing to. if head is null then the method 
      * throws and exception
      * 
@@ -59,34 +57,39 @@ public class MyLinkedList<E>
             return returnedData;
         } else {
             E returnedData = head.getData();
-            Node temp;
+            Node<E> temp;
             size--;
             temp = head;
             head = head.getNext();
             temp.setNext(null); //for garbage collection
             return returnedData;
         }
-        
     }
     
     /**
-     * this method adds a node to the end of the linkedlist with the parameter 
-     * data soted in it.
+     * adds a node to the end of the linkedlist with the parameter 
+     * data stored in it.
      * 
-     * @param   data is the value stored in the node that will be appended to the 
+     * @param   data value stored in the node that will be appended to the 
      *          end of the linkedlist
      */
     public void addTail(E data) {
         if (size == 0) {
             addHead(data);
         } else {
-            Node newNode = new Node(data);
+            Node<E> newNode = new Node(data);
             tail.setNext(newNode);
-            tail = tail.getNext();
+            tail = newNode;
             size++;
         }
     }
-    
+   
+    /**
+     * returns the data in a node at a specific index 
+     * 
+     * @param index the index of the node that's data will be returned 
+     * @return the data of the node at index (index)
+     */
     public E get(int index) throws NoSuchElementException {
         Node<E> currentNode = head;
         for (int i = 0; i < index; i++) {
@@ -98,9 +101,14 @@ public class MyLinkedList<E>
         }
         return currentNode.getData();
     }
-    
+    /**
+     * removes the node at a specific index
+     * 
+     * @param index the index of the node that will be removed
+     * @return the data stored in the removed node
+     */
     public E remove(int index) throws NoSuchElementException {
-        if (index > size - 1) {
+        if (index > size - 1|| index < 0) {
             throw new NoSuchElementException();
         } else if (index == 0) {
             return removeHead();
@@ -125,7 +133,13 @@ public class MyLinkedList<E>
         }
         
     }
-    
+    /**
+     *  adds a new node storing element as data to the linked list at a 
+     *  specific index
+     *  
+     *  @param index    the index where the new node will be added
+     *  @param element  the value stored in the added node as data 
+     */
     public void add(int index, E element) {
         if (index > size || index < 0){
             throw new NoSuchElementException();
@@ -140,18 +154,29 @@ public class MyLinkedList<E>
                 currentNode = currentNode.getNext();
             }
             Node<E> nextNode = currentNode.getNext();
-            Node<E> newNode = new Node(element);// not finished
+            Node<E> newNode = new Node(element);
             currentNode.setNext(newNode);
             newNode.setNext(nextNode);
             size++;
         }
         
     }
-    
+    /**
+     * appends an element to the end of the LinkedList
+     * 
+     * @param element the value that will be appended to the LinkedList in a node
+     */
     public void add(E element){
         addTail(element);
     }
     
+    /**
+     * sets the data of a node at a specific index to the parameter element
+     * 
+     * @param index the index of the node in the linkedlist 
+     *              where the data will be changed
+     * @param element the value that the node's data is being set to
+     */
     public void set(int index, E element){
         if (index > size - 1) {
             throw new NoSuchElementException();
@@ -165,19 +190,58 @@ public class MyLinkedList<E>
     }
     
     /**
-     * this method determines if the linked list is empty or not
+     *  inserts a node storing element in to a sorted LinkedList at its respective 
+     *  sorted position based on the value of element 
+     *  
+     *  @param element the element that is stored in the newly added node
+     */
+    public void insertSorted(E element) {
+        Node<E> currentNode = head;
+        int currentIndex = 0;
+        while (currentIndex < size 
+                && currentNode.getData().compareTo(element) == -1) {
+            currentNode = currentNode.getNext(); 
+            currentIndex++;
+        }
+        add(currentIndex, element);
+    }
+    
+    /**
+     * removes the first element from the linked list that stores the value 
+     * of the parameter, element
      * 
-     * @return returns true if empty returns false if not.
+     * @param element the value that will be removed from the Linkedlist 
+     */
+    public E remove(E element) {
+        if (element.equals(head.getData())){
+            E data = removeHead();
+            return data;
+        } else {
+            Node<E> currentNode = head;
+            for (int i = 0 ; i < size - 1; i++) {
+                if (element.equals(head.getNext().getData())) {
+                    E currentElement = remove(i + 1);
+                    return currentElement;
+                }
+            }
+            return null;
+        }
+    }
+    
+    /**
+     * determines if the linked list is empty or not
+     * 
+     * @return true if empty returns false if not.
      */
     public boolean isEmpty() {
         return head == null;
     }
     
     /** 
-     * this method returns the value of the data in the head node of the 
+     * returns the value of the data in the head node of the 
      * linked list.
      * 
-     * @return the value of the data of the head is returned
+     * @return the value of the data of the head 
      * @throws NoSuchElementException if head is null
      */
     public E getHead() throws NoSuchElementException {
@@ -189,24 +253,24 @@ public class MyLinkedList<E>
     }
     
     /**
-     * this method returns the size of the of the Linked List  y counting 
+     *  returns the size of the of the Linked List  y counting 
      *  the amount of node included in it
      *  
-     * @return an int value represnting the lenght of the linked list
+     * @return the length of the linked list
      */
     public int size() {
         return size;
     }
     
     /**
-     * returns a string that has all of the values of from the data in each 
-     * individual node of the Linked list
+     * returns a string that has all of the data from the Linkedlist from head 
+     * to tail 
      * 
      * @return string that has all of the values of the linked list.
      */
     public String toString() {
         String toString = "";
-        Node currentNode = head;
+        Node<E> currentNode = head;
         
         while (currentNode.getNext() != null) {
             toString += currentNode.getData() + ", ";

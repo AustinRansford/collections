@@ -6,7 +6,7 @@
  * @author Austin Ransford
  * @version 9-26-2023
  */
-public class MyQueueLL<E>
+public class MyQueueLL<E extends Comparable<E>>
 {
     private MyLinkedList<E> queue;
     
