@@ -92,14 +92,14 @@ public class MyLinkedList<E extends Comparable<E>>
      */
     public E get(int index) throws NoSuchElementException {
         Node<E> currentNode = head;
-        for (int i = 0; i < index; i++) {
-            if (currentNode.getNext() == null){
-                throw new NoSuchElementException();
-            } else {
+        if (index > size - 1|| index < 0 || head == null) {
+            throw new NoSuchElementException();
+        } else {
+            for (int i = 0; i < index; i++) {
                 currentNode = currentNode.getNext();
             }
+            return currentNode.getData();
         }
-        return currentNode.getData();
     }
     /**
      * removes the node at a specific index
@@ -179,7 +179,7 @@ public class MyLinkedList<E extends Comparable<E>>
      * @param element the value that the node's data is being set to
      */
     public void set(int index, E element){
-        if (index > size - 1) {
+        if (index > size - 1 || index < 0) {
             throw new NoSuchElementException();
         } else {
             Node<E> currentNode = head;

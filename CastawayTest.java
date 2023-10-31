@@ -27,6 +27,7 @@ public class CastawayTest
      */
     public void castawayTest() {
         MyLinkedList test = new MyLinkedList<Castaway>();
+        Casta
         
     }
 }

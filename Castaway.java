@@ -31,7 +31,8 @@ public class Castaway implements Comparable
     public String getLastName(){
         return lastName;
     }
-
+    
+    @Override
     public int compareTo(Castaway other) {
         if (lastName.compareTo(other.lastName) != 0) {
             return lastName.compareTo(other.lastName);
