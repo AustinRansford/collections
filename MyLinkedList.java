@@ -124,6 +124,7 @@ public class MyLinkedList<E extends Comparable<E>>
             Node<E> temp = currentNode.getNext();
             if (temp.getNext() == null) {
                 currentNode.setNext(null);
+                tail = currentNode;
             } else {
                 currentNode.setNext(temp.getNext());
                 temp.setNext(null);
@@ -213,20 +214,16 @@ public class MyLinkedList<E extends Comparable<E>>
      * @param element the value that will be removed from the Linkedlist 
      */
     public E remove(E element) {
-        if (element.equals(head.getData())){
-            E data = removeHead();
-            return data;
-        } else {
-            Node<E> currentNode = head;
-            for (int i = 0 ; i < size - 1; i++) {
-                if (element.equals(head.getNext().getData())) {
-                    E currentElement = remove(i + 1);
-                    return currentElement;
-                }
+        Node<E> currentNode = head;
+        for (int i = 0 ; i < size; i++) {
+            if (element.equals(currentNode.getData())) {
+                return remove(i);
             }
-            return null;
+            currentNode = currentNode.getNext();
         }
+        return null;
     }
+    
     
     /**
      * determines if the linked list is empty or not

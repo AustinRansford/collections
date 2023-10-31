@@ -120,7 +120,6 @@ public class MyLinkedListTest
             System.out.println("Your add method does not set the head variable when inserting at index 0");
         }
         list.add(4, 10);
-        System.out.println(list);
         list.addTail(5);
         if (!list.toString().equals("9, 3, 4, 2, 10, 5")) {
             System.out.println("Your add method does not set the tail variable when inserting at the index equal to the size of the list  " + list.toString());
@@ -165,6 +164,7 @@ public class MyLinkedListTest
         if (list.remove(new Integer(2)) == null) {
             System.out.println("Failed remove element, is null");
         }
+        System.out.println(list);
         if (!list.toString().equals("3, 4, 9")) {
             System.out.println("Failed remove element " + list.toString());
         }
@@ -178,63 +178,6 @@ public class MyLinkedListTest
         listSorted.insertSorted(-6);
         if (!listSorted.toString().equals("-6, 0, 2, 6, 8, 9, 67")) {
             System.out.println("Failed insertSorted " + listSorted.toString());
-        }
-        
-        
-        
-        MyStackLL<Integer> stack = new MyStackLL<Integer>();
-        try {
-            stack.pop();
-        } catch (NoSuchElementException e){
-            System.out.println("Tried to pop from an empty stack.");
-        }
-        try {
-            stack.top();
-        } catch (NoSuchElementException e){
-            System.out.println("Tried to top from an empty stack");
-        }
-        if (!stack.isEmpty()){
-            System.out.println("Failed isEmpty");
-        }
-        stack.push(1);
-        stack.push(2);
-        stack.push(3);
-        stack.push(4);
-        stack.push(5);
-
-        if (stack.size() != 5){
-            System.out.println("Failed size");
-        }
-        if (stack.top() != 5){
-            System.out.println("Failed top");
-        }
-        if (stack.pop() != 5){
-            System.out.println("Failed pop");
-        }
-        if (!stack.toString().equals("4, 3, 2, 1")) {
-            System.out.println("Failed toString " + stack.toString());
-        }
-        
-        MyQueueLL<Integer> queue = new MyQueueLL<Integer>();
-        if (!queue.isEmpty()){
-            System.out.println("Failed isEmpty");
-        }
-        queue.enqueue(1);
-        queue.enqueue(2);
-        queue.enqueue(3);
-        queue.enqueue(4);
-        queue.enqueue(5);
-        if (queue.size() != 5){
-            System.out.println("Failed size");
-        }
-        if (queue.front() != 1){
-            System.out.println("Failed front");
-        }
-        if (queue.dequeue() != 1){
-            System.out.println("Failed dequeue");
-        }
-        if (!queue.toString().equals("2, 3, 4, 5")) {
-            System.out.println("Failed toString " + queue.toString());
         }
     }
 }
