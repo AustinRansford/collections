@@ -268,12 +268,13 @@ public class MyLinkedList<E extends Comparable<E>>
     public String toString() {
         String toString = "";
         Node<E> currentNode = head;
-        
-        while (currentNode.getNext() != null) {
-            toString += currentNode.getData() + ", ";
-            currentNode = currentNode.getNext();
+        if (head != null){
+            while (currentNode.getNext() != null) {
+                toString += currentNode.getData() + ", ";
+                currentNode = currentNode.getNext();
+            }
+            toString += currentNode.getData();
         }
-        toString += currentNode.getData();
         return toString;
     }
 }

@@ -180,4 +180,8 @@ public class MyLinkedListTest
             System.out.println("Failed insertSorted " + listSorted.toString());
         }
     }
+    public static void testPrint(){
+        MyLinkedList test = new MyLinkedList<String>();
+        System.out.println(test);
+    }
 }
