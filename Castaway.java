@@ -5,7 +5,7 @@
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Castaway implements Comparable
+public class Castaway
 {
     // instance variables - replace the example below with your own
     private int score;
@@ -16,7 +16,7 @@ public class Castaway implements Comparable
     /**
      * Constructor for objects of class Castaways
      */
-    public Castaway(int score, String lastName, String firstName, String gender)
+    public Castaway(String lastName, String firstName, int score, String gender)
     {
         this.score = score;
         this.lastName = lastName;
@@ -32,7 +32,6 @@ public class Castaway implements Comparable
         return lastName;
     }
     
-    @Override
     public int compareTo(Castaway other) {
         if (lastName.compareTo(other.lastName) != 0) {
             return lastName.compareTo(other.lastName);

@@ -41,7 +41,7 @@ public class MyLinkedList<E extends Comparable<E>>
     
     /**
      * removes the head of the LinkedList and replaces it with the 
-     * node taht the head was pointing to. if head is null then the method 
+     * node that the head was pointing to. if head is null then the method 
      * throws and exception
      * 
      * @return returns the data store in the head node.
@@ -101,6 +101,7 @@ public class MyLinkedList<E extends Comparable<E>>
             return currentNode.getData();
         }
     }
+    
     /**
      * removes the node at a specific index
      * 
@@ -134,6 +135,7 @@ public class MyLinkedList<E extends Comparable<E>>
         }
         
     }
+    
     /**
      *  adds a new node storing element as data to the linked list at a 
      *  specific index
@@ -162,6 +164,7 @@ public class MyLinkedList<E extends Comparable<E>>
         }
         
     }
+    
     /**
      * appends an element to the end of the LinkedList
      * 
@@ -223,7 +226,6 @@ public class MyLinkedList<E extends Comparable<E>>
         }
         return null;
     }
-    
     
     /**
      * determines if the linked list is empty or not
