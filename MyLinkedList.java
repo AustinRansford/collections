@@ -202,12 +202,13 @@ public class MyLinkedList<E extends Comparable<E>>
     public void insertSorted(E element) {
         Node<E> currentNode = head;
         int currentIndex = 0;
-        while (currentIndex < size 
-                && currentNode.getData().compareTo(element) == -1) {
+ 
+        while (currentNode != null
+                && element.compareTo(currentNode.getData()) >= 0) {
             currentNode = currentNode.getNext(); 
             currentIndex++;
         }
-        add(currentIndex, element);
+        add(currentIndex, element); 
     }
     
     /**
