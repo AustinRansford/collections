@@ -5,7 +5,8 @@
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Castaway
+
+public class Castaway implements Comparable<Castaway>
 {
     // instance variables - replace the example below with your own
     private int score;
@@ -35,13 +36,11 @@ public class Castaway
     public int compareTo(Castaway other) {
         if (lastName.compareTo(other.lastName) != 0) {
             return lastName.compareTo(other.lastName);
-        } else if (firstName.compareTo(other.firstName) != 0) {
-            return firstName.compareTo(other.firstName); 
         } else {
-            return 0;
+            return firstName.compareTo(other.firstName); 
         }
     }
-    
+
     public boolean equals(Castaway other){
         return compareTo(other) == 0;
     }
