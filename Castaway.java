@@ -40,9 +40,10 @@ public class Castaway implements Comparable<Castaway>
             return firstName.compareTo(other.firstName); 
         }
     }
-
-    public boolean equals(Castaway other){
-        return compareTo(other) == 0;
+    
+    @Override
+    public boolean equals(Object other){
+        return compareTo((Castaway)other) == 0;
     }
     
     public String toString() {
