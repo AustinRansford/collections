@@ -6,7 +6,7 @@ import java.util.NoSuchElementException;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class MyDoublyLinkedList<E> 
+public class MyDoublyLinkedList<E extends Comparable<E>>
 {
     private DoubleNode<E> head;
     private DoubleNode<E> tail;
@@ -50,12 +50,10 @@ public class MyDoublyLinkedList<E>
             head = newHead;
             size++;
         } else {
-            DoubleNode currentNode = head;
-            for (int i = 0; i < index; i++) {
-                currentNode = currentNode.getNext();
-            }
+            DoubleNode currentNode = findNode(index);
             DoubleNode nextNode = currentNode.getNext();
             DoubleNode newNode = new DoubleNode(element);
+            
             newNode.setNext(nextNode);
             newNode.setPrev(currentNode);
             currentNode.setNext(newNode);
@@ -95,14 +93,105 @@ public class MyDoublyLinkedList<E>
         if (index >= size || index < 0){
             throw new NoSuchElementException();
         } else {
+            return findNode(index).getData();
+        }
+    }
+    
+    public DoubleNode<E> findNode(int index)throws NoSuchElementException{
+        if(index <= size/2){
             DoubleNode<E> currentNode = head;
             for(int i = 0; i < index; i++) {
                 currentNode = currentNode.getNext();
             }
-            return currentNode.getData();
+            return currentNode; 
+        } else {
+            DoubleNode<E> currentNode = tail;
+            for( int i = size - 1; i > index; i--) {
+                currentNode = currentNode.getPrev();
+            }
+            return currentNode;
         }
+    }
     
-        
+    // may need some testing some done
+    /**
+     *  inserts a node storing element in to a sorted LinkedList at its respective 
+     *  sorted position based on the value of element 
+     *  
+     *  @param element the element that is stored in the newly added node
+     */
+    public void insertSorted(E element) {
+        DoubleNode<E> currentNode = head;
+        int currentIndex = 0;
+        if (element.compareTo(head.getData()) < 0)
+        {
+            addHead(element);
+        } else {
+            while (currentNode != null
+                    && element.compareTo(currentNode.getData()) >= 0) {
+                currentNode = currentNode.getNext(); 
+                currentIndex++;
+            }
+            add(currentIndex - 1, element); 
+        }
+    }
+    
+    //needs testing
+    public E getHead() {
+        if (head == null){
+            throw new NoSuchElementException();
+        } else {
+            return head.getData();
+        }
+    }
+    //needs testing
+    public E getTail(){
+        if (tail == null){
+            throw new NoSuchElementException();
+        } else {
+            return tail.getData();
+        }
+    }
+    
+    // might need a bit more testing
+    public void set(int index, E element) {
+        if(index >= size || index < 0){
+            throw new NoSuchElementException();
+        } else {
+            findNode(index).setData(element);
+        }
+    }
+    
+    public E remove(int index)throws NoSuchElementException{
+        if (index >= size || index < 0) {
+            throw new NoSuchElementException(); 
+        } else if (index == 0){
+            DoubleNode newHead = head.getNext();
+            head.setNext(null);
+            newHead.setPrev(null);
+            E data = head.getData();
+            head = newHead;
+            size--;
+            return data; 
+        } else if ( index == size - 1) {
+            DoubleNode newTail = tail.getPrev();
+            tail.setPrev(null);
+            newTail.setNext(null);
+            E data = tail.getData();
+            tail = newTail;
+            size--;
+            return data; 
+        } else {
+            DoubleNode<E> removedNode = findNode(index);
+            DoubleNode<E> nextNode = removedNode.getNext();
+            DoubleNode<E> prevNode = removedNode.getPrev();
+            nextNode.setPrev(prevNode);
+            prevNode.setNext(nextNode);
+            removedNode.setPrev(null);
+            removedNode.setNext(null);
+            size--;
+            return removedNode.getData();
+        }
     }
     
     public boolean isEmpty() {

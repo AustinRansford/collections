@@ -38,8 +38,16 @@ public class MyDoublyLinkedListTest
             System.out.println("index too large error works");
         }
         System.out.println("print last index with get(index): " + (test.get(6).equals(5)));
-        System.out.println("get(index 0) works: " + test);
+        System.out.println("get(index 0) works: " + (test.get(0).equals(-1)));
         
+        
+        System.out.println("Remove methods");
+        System.out.println("remove at index 0: (-1)" + test.remove(0));
+        System.out.println(test + " size: " + test.size());
+        System.out.println("remove at tail: (5)" + test.remove(test.size()-1));
+        System.out.println(test + " size: " + test.size());
+        System.out.println("remove at index 2: (2)" + test.remove(2));
+        System.out.println(test + " size: " + test.size());
         
         System.out.println("Test adds when list is empty");
         MyDoublyLinkedList<Integer> test2 = new MyDoublyLinkedList<Integer>();
@@ -66,5 +74,23 @@ public class MyDoublyLinkedListTest
             // need a get method of some sort or a 
         }
         return true;
+    }
+    
+    public static void sortedTest(){
+        MyDoublyLinkedList<Integer> test = new MyDoublyLinkedList<Integer>();
+        test.add(1);
+        test.add(2);
+        test.add(4);
+        System.out.println(test);
+        test.insertSorted(3);
+        System.out.println(test);
+        test.insertSorted(2);
+        System.out.println(test);
+        test.insertSorted(0);
+        System.out.println(test);
+        test.insertSorted(5);
+        System.out.println(test);
+        
+        
     }
 }
