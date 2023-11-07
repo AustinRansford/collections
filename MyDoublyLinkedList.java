@@ -91,6 +91,20 @@ public class MyDoublyLinkedList<E>
         }
     }
     
+    public E get(int index) throws NoSuchElementException {
+        if (index >= size || index < 0){
+            throw new NoSuchElementException();
+        } else {
+            DoubleNode<E> currentNode = head;
+            for(int i = 0; i < index; i++) {
+                currentNode = currentNode.getNext();
+            }
+            return currentNode.getData();
+        }
+    
+        
+    }
+    
     public boolean isEmpty() {
         return (size == 0);
     }

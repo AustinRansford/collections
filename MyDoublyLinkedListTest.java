@@ -31,6 +31,16 @@ public class MyDoublyLinkedListTest
         test.addTail(5);
         System.out.println(test + " size: " + test.size());
         
+        System.out.println("getter method testing:");
+        try{
+            test.get(7);
+        } catch(Exception NoSuchElementException) {
+            System.out.println("index too large error works");
+        }
+        System.out.println("print last index with get(index): " + (test.get(6).equals(5)));
+        System.out.println("get(index 0) works: " + test);
+        
+        
         System.out.println("Test adds when list is empty");
         MyDoublyLinkedList<Integer> test2 = new MyDoublyLinkedList<Integer>();
         test2.add(0,1);
