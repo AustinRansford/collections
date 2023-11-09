@@ -41,7 +41,7 @@ public class MyDoublyLinkedList<E extends Comparable<E>>
             head = new DoubleNode(element);
             tail = head;
             size++;
-        } else if (index == size - 1 ){
+        } else if (index == size ){
             add(element);
         } else if (index == 0){
             DoubleNode newHead = new DoubleNode(element);
@@ -50,8 +50,8 @@ public class MyDoublyLinkedList<E extends Comparable<E>>
             head = newHead;
             size++;
         } else {
-            DoubleNode currentNode = findNode(index);
-            DoubleNode nextNode = currentNode.getNext();
+            DoubleNode nextNode = findNode(index);
+            DoubleNode currentNode = nextNode.getPrev();
             DoubleNode newNode = new DoubleNode(element);
             
             newNode.setNext(nextNode);
@@ -97,7 +97,7 @@ public class MyDoublyLinkedList<E extends Comparable<E>>
         }
     }
     
-    public DoubleNode<E> findNode(int index)throws NoSuchElementException{
+    private DoubleNode<E> findNode(int index){
         if(index <= size/2){
             DoubleNode<E> currentNode = head;
             for(int i = 0; i < index; i++) {
@@ -123,16 +123,20 @@ public class MyDoublyLinkedList<E extends Comparable<E>>
     public void insertSorted(E element) {
         DoubleNode<E> currentNode = head;
         int currentIndex = 0;
-        if (element.compareTo(head.getData()) < 0)
-        {
+        if (size == 0){
             addHead(element);
         } else {
-            while (currentNode != null
-                    && element.compareTo(currentNode.getData()) >= 0) {
-                currentNode = currentNode.getNext(); 
-                currentIndex++;
+            if (element.compareTo(head.getData()) < 0)
+            {
+                addHead(element);
+            } else {
+                while (currentNode != null
+                        && element.compareTo(currentNode.getData()) >= 0) {
+                    currentNode = currentNode.getNext(); 
+                    currentIndex++;
+                }
+                add(currentIndex, element); 
             }
-            add(currentIndex - 1, element); 
         }
     }
     
@@ -163,7 +167,7 @@ public class MyDoublyLinkedList<E extends Comparable<E>>
     }
     
     public E remove(int index)throws NoSuchElementException{
-        if (index >= size || index < 0) {
+        if (index >= size || index < 0 || isEmpty()) {
             throw new NoSuchElementException(); 
         } else if (index == 0){
             DoubleNode newHead = head.getNext();
@@ -194,6 +198,25 @@ public class MyDoublyLinkedList<E extends Comparable<E>>
         }
     }
     
+    public E remove(E element){
+        DoubleNode<E> currentNode = head; 
+        for (int i = 0 ; i < size; i++) {
+            if (element.equals(currentNode.getData())) {
+                return remove(i);
+            }
+            currentNode = currentNode.getNext();
+        }
+        return null;
+    }
+    
+    public E removeHead(){
+        return remove(0);
+    }
+    
+    public E removeTail(){
+        return remove(size - 1); 
+    }
+    
     public boolean isEmpty() {
         return (size == 0);
     }
@@ -215,4 +238,21 @@ public class MyDoublyLinkedList<E extends Comparable<E>>
         return toString;
     }
     
+    public boolean integerityTest()
+    {
+        DoubleNode currentNode = head;
+        int testSize = 0;
+        while ( currentNode != null && currentNode.getNext() != null ){
+            if (currentNode.getPrev() != null && !currentNode.getPrev().getNext().equals(currentNode)) {
+                //if prev node doesn't point back;
+                return false;
+            } else if (currentNode.getNext() != null && !currentNode.getNext().getPrev().equals(currentNode)){
+                // if next node doesnt point back
+                return false;
+            }
+            currentNode = currentNode.getNext();
+        }
+        
+        return true;
+    }
 }
