@@ -54,7 +54,7 @@ public class MyLinkedList<E extends Comparable<E>>
             head = new DoubleNode(element);
             tail = head;
             size++;
-        } else if (index == size ){
+        } else if (index == size){
             add(element);
         } else if (index == 0){
             DoubleNode newHead = new DoubleNode(element);
@@ -73,7 +73,6 @@ public class MyLinkedList<E extends Comparable<E>>
             nextNode.setPrev(newNode);
             size++;
         }
-        
     }
     
     /**
