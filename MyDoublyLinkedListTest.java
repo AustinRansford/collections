@@ -1,6 +1,6 @@
 
 /**
- * Write a description of class MyDoublyLinkedListTest here.
+ * Write a description of class MyLinkedListTest here.
  *
  * @author (your name)
  * @version (a version number or a date)
@@ -11,11 +11,11 @@ public class MyDoublyLinkedListTest
     private int x;
 
     /**
-     * Constructor for objects of class MyDoublyLinkedListTest
+     * Constructor for objects of class MyLinkedListTest
      */
-    public static void MyDoublyLinkedListTest()
+    public static void MyLinkedListTest()
     {
-        MyDoublyLinkedList<Integer> test = new MyDoublyLinkedList<Integer>();
+        MyLinkedList<Integer> test = new MyLinkedList<Integer>();
         System.out.println("IntegerityTest: " + test.integerityTest());
         test.add(1); //empty
         System.out.println(test + " size: " + test.size());
@@ -61,18 +61,28 @@ public class MyDoublyLinkedListTest
         System.out.println("remove at index 2: (2)" + test.remove(2));
         System.out.println(test + " size: " + test.size());
         System.out.println("IntegerityTest: " + test.integerityTest());
+        System.out.println("remove tail method (10)" + test.removeTail());
+        System.out.println(test + " size: " + test.size());
+        System.out.println("remove head method (0)" + test.removeHead());
+        System.out.println(test + " size: " + test.size());
+        System.out.println("remove at index 0: (1)" + test.remove(0));
+        System.out.println(test + " size: " + test.size());
+        System.out.println("remove at index 0: (3)" + test.remove(0));
+        System.out.println(test + " size: " + test.size());
+        System.out.println("remove at index 0: (4)" + test.remove(0));
+        System.out.println(test + " size: " + test.size());
         
         System.out.println("Test adds when list is empty");
-        MyDoublyLinkedList<Integer> test2 = new MyDoublyLinkedList<Integer>();
+        MyLinkedList<Integer> test2 = new MyLinkedList<Integer>();
         test2.add(0,1); // empty
         System.out.println(test2 + " size: " + test2.size());
-        MyDoublyLinkedList<Integer> test3 = new MyDoublyLinkedList<Integer>();
+        MyLinkedList<Integer> test3 = new MyLinkedList<Integer>();
         test3.addHead(1); //empty
         System.out.println(test3 + " size: " + test3.size());
-        MyDoublyLinkedList<Integer> test4 = new MyDoublyLinkedList<Integer>();
+        MyLinkedList<Integer> test4 = new MyLinkedList<Integer>();
         test4.addTail(1); //empty
         System.out.println(test4 + " size: " + test4.size());
-        MyDoublyLinkedList<Integer> test5 = new MyDoublyLinkedList<Integer>();
+        MyLinkedList<Integer> test5 = new MyLinkedList<Integer>();
         test5.insertSorted(1); //empty
         System.out.println(test4 + " size: " + test4.size());
     }
@@ -85,7 +95,7 @@ public class MyDoublyLinkedListTest
      */
     
     public static void sortedTest(){
-        MyDoublyLinkedList<Integer> test = new MyDoublyLinkedList<Integer>();
+        MyLinkedList<Integer> test = new MyLinkedList<Integer>();
         test.add(1);
         test.add(2);
         test.add(4);
@@ -103,7 +113,7 @@ public class MyDoublyLinkedListTest
     }
     
     public static void testLL() {
-        MyDoublyLinkedList<Integer> list = new MyDoublyLinkedList<Integer>();
+        MyLinkedList<Integer> list = new MyLinkedList<Integer>();
         list.addHead(1);
         list.addHead(2);
         if (list.remove(1) == null) {
@@ -186,5 +196,94 @@ public class MyDoublyLinkedListTest
         if (!listSorted.toString().equals("-6, 0, 2, 6, 8, 9, 67")) {
             System.out.println("Failed insertSorted " + listSorted.toString());
         }
+    }
+    
+    public static void exceptionTester(){
+        MyLinkedList<Integer> list = new MyLinkedList<Integer>();
+        try{
+            list.removeHead();
+        } catch(Exception NoSuchElementException) {
+            System.out.println("removeHead throws error while empty");
+        }
+        try{
+            list.removeTail();
+        } catch(Exception NoSuchElementException) {
+            System.out.println("removeTail throws error while empty");
+        }
+        try{
+            list.getHead();
+        } catch(Exception NoSuchElementException) {
+            System.out.println("getHead throws error while empty");
+        }
+        try{
+            list.getTail();
+        } catch(Exception NoSuchElementException) {
+            System.out.println("getTail throws error while empty");
+        }
+        list.add(3);
+        try{
+            list.get(7);
+        } catch(Exception NoSuchElementException) {
+            System.out.println("get at invalid index throws error");
+        }
+        try{
+            list.get(-1);
+        } catch(Exception NoSuchElementException) {
+            System.out.println("set at negative index throws error ");
+        }
+        try{
+            list.add(1,0);
+        } catch(Exception NoSuchElementException) {
+            System.out.println("add at invalid index works while empty");
+        }
+        System.out.println(list);
+        try{
+            list.add(-1, 0);
+        } catch(Exception NoSuchElementException) {
+            System.out.println("add throws error with negative index");
+        }
+        try{
+            list.set(7, 8);
+        } catch(Exception NoSuchElementException) {
+            System.out.println("set at index too large throws error" );
+        }
+        try{
+            list.set(-1, 8);
+        } catch(Exception NoSuchElementException) {
+            System.out.println("set at negative index  error works ");
+        }
+        try{
+            list.remove(-1);
+        } catch(Exception NoSuchElementException) {
+            System.out.println("remove throws error at negative index");
+        }
+        try{
+            list.removeHead();
+        } catch(Exception NoSuchElementException) {
+            System.out.println("removeHead throws error while empty");
+        }
+        try{
+            list.removeTail();
+        } catch(Exception NoSuchElementException) {
+            System.out.println("removeTail throws error while empty");
+        }
+        try{
+            list.getHead();
+        } catch(Exception NoSuchElementException) {
+            System.out.println("getHead throws error while empty");
+        }
+        try{
+            list.remove(1);
+        } catch(Exception NoSuchElementException) {
+            System.out.println("getTail throws error when too large");
+        }
+        System.out.println(list);
+        
+        
+        
+        
+        
+        
+        
     }
 }
