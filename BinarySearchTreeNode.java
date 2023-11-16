@@ -84,5 +84,41 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
         }
     }
     
+    public E getMin() {
+        if (left == null){
+            return data;
+        } else {
+            return left.getMin();
+        }
+    }
+    
+    public E getMax() {
+        if (right == null) {
+            return data;
+        } else {
+            return right.getMax();
+        }
+    }
+    
+    public BinarySearchTreeNode<E> remove(E element) {
+        if (element.compareTo(data) > 0){
+            
+        }
+        return null;
+    }
+    
+    public String toString() {
+        String newString = "";
+        if (left != null){
+            newString += left.toString() + ", ";
+        } 
+        newString += data + ", ";
+        if (right != null) {
+            newString += ", " + right.toString();
+        } 
+        return newString;
+        
+    }
+    
     
 }

@@ -40,5 +40,6 @@ public class bstTest
          System.out.println(bst.search(100));
          System.out.println(bst.getMin());
          System.out.println(bst.getMax());
+         System.out.println(bst);
     }
 }

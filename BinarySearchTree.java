@@ -1,3 +1,4 @@
+import java.util.NoSuchElementException;
 
 /**
  * Write a description of class BinarySearchTree here.
@@ -48,11 +49,7 @@ public class BinarySearchTree<E extends Comparable<E>>
         if (isEmpty()){
             return null;
         } else{ 
-            BinarySearchTreeNode<E> currentNode = root;
-            while(currentNode.getLeft() != null){
-                currentNode = currentNode.getLeft();
-            }
-            return currentNode.getData();
+            return root.getMin();
         }
     }
     
@@ -60,11 +57,7 @@ public class BinarySearchTree<E extends Comparable<E>>
         if (isEmpty()){
             return null;
         } else {
-            BinarySearchTreeNode<E> currentNode = root;
-            while(currentNode.getRight() != null){
-                currentNode = currentNode.getRight();
-            }
-            return currentNode.getData();
+            return root.getMax();
         }
     }
     
@@ -72,11 +65,19 @@ public class BinarySearchTree<E extends Comparable<E>>
         return size == 0;
     }
     
+    public E remove(E element){
+        if (isEmpty()) {
+            throw new NoSuchElementException();
+        } else {
+            return root.remove(element).getData();
+        }
+    }
+    
     public int size() {
         return size; 
     }
     
     public String toString(){
-        
+        return root.toString();
     }
 }
