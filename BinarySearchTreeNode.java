@@ -100,7 +100,7 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
         }
     }
     
-    public BinarySearchTreeNode<E> remove(E element) {
+    public E remove(E element) {
         
         if (element.compareTo(data) > 0){
             return right.remove(element);
@@ -108,7 +108,7 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
             return left.remove(element);
         } else {
             if (left == null && right == null){
-                //helllllpppp
+                throw new NoSuchElementException();
             } else if (left == null && right != null){
                 data = right.getData();
                 BinarySearchTreeNode<E> temp = right;
@@ -119,11 +119,32 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
                 BinarySearchTreeNode<E> temp = left;
                 right = temp.getRight();
                 left = temp.getLeft();
-            } 
+            } else {
+                data = right.getMin();
+                BinarySearchTreeNode<E> predecessorLink = right.getMinPredecessor();
+                predecessorLink.setLeft(null); 
+            }
+            return data;
         }
-        return null;
     }
-
+    
+    public BinarySearchTreeNode<E> getMinPredecessor() {
+        if (left.getLeft() == null){
+            return this;
+        } else {
+            return left.getMinPredecessor();
+        }
+    }
+    
+    public int getDepth(int currentDepth){
+        if (left != null){
+            return getDepth(currentDepth + 1);
+        } else if (right != null){
+            return getDepth(currentDepth + 1);
+        } else {
+            return currentDepth; 
+        }
+    }
     
     public String toString() {
         String newString = "";

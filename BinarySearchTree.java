@@ -65,18 +65,23 @@ public class BinarySearchTree<E extends Comparable<E>>
         return size == 0;
     }
     
+    public int getDepth(){
+        
+    }
+    
     
     public E remove(E element){
         if (isEmpty()) {
             throw new NoSuchElementException();
         } else {
-            return root.remove(element).getData();
+            return root.remove(element);
         }
     }
     
     public int size() {
         return size; 
     }
+    
     
     public String toString(){
         return root.toString();
