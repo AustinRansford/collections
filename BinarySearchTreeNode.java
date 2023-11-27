@@ -101,18 +101,36 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
     }
     
     public BinarySearchTreeNode<E> remove(E element) {
+        
         if (element.compareTo(data) > 0){
-            
+            return right.remove(element);
+        } else if (element.compareTo(data) < 0){
+            return left.remove(element);
+        } else {
+            if (left == null && right == null){
+                //helllllpppp
+            } else if (left == null && right != null){
+                data = right.getData();
+                BinarySearchTreeNode<E> temp = right;
+                right = temp.getRight();
+                left = temp.getLeft();
+            } else if (left != null && right == null){
+                data = left.getData();
+                BinarySearchTreeNode<E> temp = left;
+                right = temp.getRight();
+                left = temp.getLeft();
+            } 
         }
         return null;
     }
+
     
     public String toString() {
         String newString = "";
         if (left != null){
             newString += left.toString() + ", ";
         } 
-        newString += data + ", ";
+        newString += data;
         if (right != null) {
             newString += ", " + right.toString();
         } 

@@ -65,6 +65,7 @@ public class BinarySearchTree<E extends Comparable<E>>
         return size == 0;
     }
     
+    
     public E remove(E element){
         if (isEmpty()) {
             throw new NoSuchElementException();
