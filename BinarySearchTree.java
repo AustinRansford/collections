@@ -66,9 +66,13 @@ public class BinarySearchTree<E extends Comparable<E>>
     }
     
     public int getDepth(){
-        
+        return root.getDepth();
     }
     
+    public void printTree()
+    {
+        root.printTree(1);
+    }
     
     public E remove(E element){
         if (isEmpty()) {

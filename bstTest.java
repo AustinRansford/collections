@@ -28,12 +28,18 @@ public class bstTest
     public static void bstTest(){
          BinarySearchTree<Integer> bst = new BinarySearchTree<Integer>();
          bst.insert(5);
+         bst.printTree();
+         System.out.println(" Depth: " + bst.getDepth());
          bst.insert(2);
+         bst.printTree();
+         System.out.println(" Depth: " + bst.getDepth());
          bst.insert(1);
          bst.insert(3);
          bst.insert(7);
          bst.insert(8);
          bst.insert(6);
+         bst.printTree();
+         System.out.println(" Depth: " + bst.getDepth());
          System.out.println(bst.search(5));
          System.out.println(bst.search(1));
          System.out.println(bst.search(8));
@@ -42,6 +48,7 @@ public class bstTest
          System.out.println(bst.getMax());
          System.out.println(bst);
          bst.remove(5);
-         System.out.println(bst);
+         bst.printTree();
+         System.out.println(" Depth: " + bst.getDepth());
     }
 }
