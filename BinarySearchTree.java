@@ -75,10 +75,11 @@ public class BinarySearchTree<E extends Comparable<E>>
     }
     
     public E remove(E element){
-        if (isEmpty()) {
-            throw new NoSuchElementException();
+        if (search(element) == null) {
+            return null;
         } else {
-            return root.remove(element);
+            root.remove(element);
+            return element;
         }
     }
     

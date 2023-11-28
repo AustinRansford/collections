@@ -104,42 +104,37 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
     
     public BinarySearchTreeNode<E> remove(E element) {
         if (element.compareTo(data) > 0){
-            return right.remove(element);
+            right = right.remove(element);
+            return this;
         } else if (element.compareTo(data) < 0){
-            return left.remove(element);
+            left = left.remove(element);
+            return this;
         } else { // match
             if (left == null && right == null){
                 return null;
             } else if (left == null && right != null){
-                data = right.getData();
-                BinarySearchTreeNode<E> temp = right;
-                right = temp.getRight();
-                left = temp.getLeft();
+                return right;
             } else if (left != null && right == null){
-                data = left.getData();
-                BinarySearchTreeNode<E> temp = left;
-                right = temp.getRight();
-                left = temp.getLeft();
-                
+                return left;
             } else {
                 data = right.getMin();
-                BinarySearchTreeNode<E> predecessorLink = right.getMinPredecessor();
-                predecessorLink.setLeft(null); 
+                right = right.removeMin();
+                return this;
             }
-            return null;
         }
     }
     
-    public BinarySearchTreeNode<E> getMinSucessor() {
-        if (right == null) {
-            throw new NoSuchElementException();
-        } 
-        BinarySearchTreeNode<E> currentNode = right;
-        while (currentNode.getLeft() != null){
-            currentNode = left;
+    public BinarySearchTreeNode<E> removeMin(){
+        if (left != null){
+            left = left.removeMin();
+            return this;
+        } else {
+            if (right != null){
+                return right;
+            } else {
+                return null; 
+            }
         }
-            return currentNode;
-        
     }
     
     public int getDepth(){
