@@ -103,7 +103,6 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
     
     
     public BinarySearchTreeNode<E> remove(E element) {
-        
         if (element.compareTo(data) > 0){
             return right.remove(element);
         } else if (element.compareTo(data) < 0){
@@ -127,18 +126,20 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
                 BinarySearchTreeNode<E> predecessorLink = right.getMinPredecessor();
                 predecessorLink.setLeft(null); 
             }
-            return data;
+            return null;
         }
     }
     
-    public BinarySearchTreeNode<E> getMinPredecessor() {
-        if (left == null) {
+    public BinarySearchTreeNode<E> getMinSucessor() {
+        if (right == null) {
             throw new NoSuchElementException();
-        } else if (left.getLeft() == null){
-            return this;
-        } else {
-            return left.getMinPredecessor();
+        } 
+        BinarySearchTreeNode<E> currentNode = right;
+        while (currentNode.getLeft() != null){
+            currentNode = left;
         }
+            return currentNode;
+        
     }
     
     public int getDepth(){
