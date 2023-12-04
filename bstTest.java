@@ -50,5 +50,25 @@ public class bstTest
          bst.remove(5);
          bst.printTree();
          System.out.println(" Depth: " + bst.getDepth());
+         System.out.println(bst.removeMin());
+         bst.printTree();
+         System.out.println(bst.removeMax());
+         bst.printTree();
+    }
+    public static void testBST() {
+        BinarySearchTree<Integer> bst = new BinarySearchTree<Integer>();
+        System.out.println(bst.getDepth());
+        bst.insert(5);
+        System.out.println(bst.getDepth());
+        System.out.println(bst.size());
+        for (int i = 0; i < 10; i++) {
+            bst.insert(i);
+        }
+        bst.printTree();
+        System.out.println(bst.getDepth());
+        bst.remove(3);
+        System.out.println("Divider");
+        bst.printTree();
+        System.out.println(bst.toString());
     }
 }

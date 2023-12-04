@@ -137,6 +137,19 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
         }
     }
     
+    public BinarySearchTreeNode<E> removeMax(){
+        if (right != null){
+            right = right.removeMax();
+            return this;
+        } else {
+            if (left != null){
+                return left;
+            } else {
+                return null; 
+            }
+        }
+    }
+    
     public int getDepth(){
         int leftDepth = 0;
         int rightDepth = 0;
