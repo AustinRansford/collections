@@ -54,6 +54,9 @@ public class bstTest
          bst.printTree();
          System.out.println(bst.removeMax());
          bst.printTree();
+         bst.remove(6);
+         bst.printTree();
+         
     }
     public static void testBST() {
         BinarySearchTree<Integer> bst = new BinarySearchTree<Integer>();

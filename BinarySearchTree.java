@@ -148,7 +148,9 @@ public class BinarySearchTree<E extends Comparable<E>>
     }
     
     /**
-     * prints the BST from least to greatest
+     *  returns the BST from least to greatest
+     *  @returns a string with each value from the BST from least to greates
+     *  seperated by a comma and a space
      */
     public String toString(){
         return root.toString();
