@@ -5,30 +5,82 @@
  * @author (your name)
  * @version (a version number or a date)
  */
-public class MyHeap<E>
+public class MyHeap<E extends Comparable<E>>
 {
     // instance variables - replace the example below with your own
-    private E[] heapArray = (E[])new Object[100];
+    private E[] heapArray;
+    private int lastNodeIndex;
     
 
     /**
      * Constructor for objects of class MyHeap
      */
-    public MyHeap()
-    {
-        // initialise instance variables
-        x = 0;
+    public MyHeap(){
+        lastNodeIndex = -1;
+        heapArray = (E[]) new Comparable[16];
     }
 
     /**
-     * An example of a method - replace this comment with your own
+     * gives the size of the heap
      *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * 
      */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    public int size(){
+        return lastNodeIndex + 1;
+    }
+    
+    /**
+     *  checks is the heap is empty
+     *  
+     *  @return true if empty false otherwise
+     */
+    public boolean isEmpty(){
+        return size() == 0;
+    }
+    
+    public void add(E element){
+        if (isEmpty()){
+            heapArray[0] = element;
+            lastNodeIndex = 0; 
+        } else {
+            heapArray[lastNodeIndex + 1] = element;
+            lastNodeIndex++;
+            int currentIndex = lastNodeIndex;
+            while(currentIndex != 0 && 
+                    heapArray[currentIndex].compareTo(heapArray[(currentIndex - 1) / 2]) < 0) {
+                heapArray[currentIndex] = heapArray[(currentIndex - 1) /2];
+                heapArray[(currentIndex - 1) / 2] = element;
+                currentIndex = (currentIndex - 1) / 2;
+            }
+        }
+    }
+    
+    public E remove(){
+        if (isEmpty()){
+            return null;
+        } else {
+             E removedData = heapArray[0];
+             heapArray[0] = heapArray[lastNodeIndex];
+             heapArray[lastNodeIndex] = null;
+             lastNodeIndex--;
+             
+             int currentIndex = 0;
+             while(currentIndex < size() && 
+             (heapArray[currentIndex].compareTo(heapArray[currentIndex *2 +1]) > 0 
+             || (heapArray[currentIndex].compareTo(heapArray[currentIndex *2 +2])) > 0)){
+                 if(heapArray[currentIndex *2 + 1] < heapArray[currentIndex * 2 +1]){
+                     
+                 }
+             }
+             
+        }
+    }
+    
+    public String toString(){
+        String newString = "";
+        for (int i = 0; i < size(); i++){
+            newString += heapArray[i] + ", ";
+        }
+        return newString;
     }
 }

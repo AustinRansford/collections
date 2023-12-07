@@ -82,9 +82,14 @@ public class BinarySearchTree<E extends Comparable<E>>
      * @return the removed value from the tree.
      */
     public E removeMin(){
-        E data = root.getMin();
-        root.removeMin();
-        return data;
+        if (root == null){
+            return null;
+        } else {
+            E data = root.getMin();
+            root.removeMin();
+            return data;
+        }
+        
     }
     
     /**
@@ -92,9 +97,13 @@ public class BinarySearchTree<E extends Comparable<E>>
      * @return the removed value
      */
     public E removeMax(){
-        E data = root.getMax();
-        root.removeMax().getData();
-        return data;
+        if (root == null) {
+            return null;
+        } else {
+            E data = root.getMax();
+            root.removeMax().getData();
+            return data;
+        }
     }
     
     /**
