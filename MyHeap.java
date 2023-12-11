@@ -1,4 +1,4 @@
-
+import java.util.Arrays;
 /**
  * Write a description of class MyHeap here.
  *
@@ -17,7 +17,7 @@ public class MyHeap<E extends Comparable<E>>
      */
     public MyHeap(){
         lastNodeIndex = -1;
-        heapArray = (E[]) new Comparable[16];
+        heapArray = (E[]) new Comparable[1];
     }
 
     /**
@@ -43,6 +43,9 @@ public class MyHeap<E extends Comparable<E>>
             heapArray[0] = element;
             lastNodeIndex = 0; 
         } else {
+            if(lastNodeIndex + 1 == heapArray.length){
+                heapArray = Arrays.copyOf(heapArray, heapArray.length * 2);
+            }
             heapArray[lastNodeIndex + 1] = element;
             lastNodeIndex++;
             int currentIndex = lastNodeIndex;
@@ -55,7 +58,7 @@ public class MyHeap<E extends Comparable<E>>
         }
     }
     
-    public E remove(){
+    public E removeMin(){
         if (isEmpty()){
             return null;
         } else {
@@ -65,10 +68,12 @@ public class MyHeap<E extends Comparable<E>>
              lastNodeIndex--;
              
              int currentIndex = 0;
-             while(currentIndex * 2 + 2 < size() && 
-             (heapArray[currentIndex].compareTo(heapArray[currentIndex *2 +1]) > 0 
-             || (heapArray[currentIndex].compareTo(heapArray[currentIndex *2 +2])) > 0)){
-                 if(heapArray[currentIndex *2 + 1].compareTo(heapArray[currentIndex * 2 +2]) < 0){
+             while( (currentIndex * 2 + 1 < size() 
+                     && heapArray[currentIndex].compareTo(heapArray[currentIndex *2 +1]) > 0) 
+                     || (currentIndex * 2 + 2 < size() 
+                     && heapArray[currentIndex].compareTo(heapArray[currentIndex *2 +2]) > 0)){
+                 if( currentIndex *2 + 2 >= size() 
+                     || heapArray[currentIndex *2 + 1].compareTo(heapArray[currentIndex * 2 +2]) < 0){
                      E temp = heapArray[currentIndex];
                      heapArray[currentIndex] = heapArray[currentIndex * 2 + 1];
                      heapArray[currentIndex * 2 + 1] = temp; 

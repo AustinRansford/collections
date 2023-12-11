@@ -35,7 +35,7 @@ public class MyHeapTest
         System.out.println(heap + " size: " + heap.size());
         heap.add(4);
         System.out.println(heap + " size: " + heap.size());
-        System.out.println(heap.remove());
+        System.out.println(heap.removeMin());
         System.out.println(heap + " size: " + heap.size());
         
         
@@ -43,15 +43,33 @@ public class MyHeapTest
     
     public static void randomTest(){
         MyHeap<Integer> heap = new MyHeap<Integer>();
+        int[] array = new int[16];
         for (int i = 0; i < 16; i++){
             heap.add((int)(Math.random() * 100) + 1);
         }
         System.out.println(heap + " size: " + heap.size());
+        for (int i = 0; i < 10; i++){
+            int removedData = heap.removeMin();
+            System.out.println(removedData);
+            System.out.println(heap + " size: " + heap.size());
+            array[i] = removedData;
+        }
+        for(int i = 0; i < array.length;i++)
+        {
+            System.out.print(array[i] + " ");
+        }
+        
         for (int i = 0; i < 16; i++){
-            System.out.println(heap.remove());
+            heap.add((int)(Math.random() * 100) + 1);//need to make the size changeable
+        }
+        System.out.println(heap + " size: " + heap.size());
+        for (int i = 0; i < 16; i++){
+            System.out.println(heap.removeMin());
             System.out.println(heap + " size: " + heap.size());
 
         }
+        
+        
     }
 
 }
