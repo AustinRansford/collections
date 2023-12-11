@@ -35,6 +35,8 @@ public class MyHeapTest
         System.out.println(heap + " size: " + heap.size());
         heap.add(4);
         System.out.println(heap + " size: " + heap.size());
+        System.out.println(heap.remove());
+        System.out.println(heap + " size: " + heap.size());
         
         
     }
@@ -45,6 +47,11 @@ public class MyHeapTest
             heap.add((int)(Math.random() * 100) + 1);
         }
         System.out.println(heap + " size: " + heap.size());
+        for (int i = 0; i < 16; i++){
+            System.out.println(heap.remove());
+            System.out.println(heap + " size: " + heap.size());
+
+        }
     }
 
 }
