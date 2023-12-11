@@ -131,7 +131,7 @@ public class BinarySearchTree<E extends Comparable<E>>
      */
     public void printTree()
     {
-        root.printTree(1);
+        root.printTree(3);
     }
     
     /**

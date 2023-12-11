@@ -67,11 +67,44 @@ public class bstTest
         for (int i = 0; i < 10; i++) {
             bst.insert(i);
         }
+        bst.insert(5);
+        bst.insert(8);
         bst.printTree();
         System.out.println(bst.getDepth());
         bst.remove(3);
         System.out.println("Divider");
         bst.printTree();
         System.out.println(bst.toString());
+    }
+    public static void doubleTest(){
+        BinarySearchTree<Integer> bst = new BinarySearchTree<Integer>();
+        bst.insert(10);
+        bst.insert(10);
+        bst.insert(11);
+        bst.insert(10);
+        bst.insert(5); 
+        bst.printTree();
+
+        System.out.println(bst.remove(10));
+        System.out.println(bst.remove(12));
+        bst.printTree();
+        
+    }
+    public static void randomTest() {
+        BinarySearchTree<Integer> bst = new BinarySearchTree<Integer>();
+        
+        for (int i = 0; i < 10; i++) {
+            int num = (int)(Math.random() * 100 + 1);
+            bst.insert(num);
+            System.out.print(num + " ");
+        }
+        System.out.println();
+        System.out.println(bst);
+        bst.printTree();
+        System.out.println(bst.removeMin());
+        System.out.println(bst.removeMax());
+        
+        
+        
     }
 }
