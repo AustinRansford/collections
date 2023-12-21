@@ -47,7 +47,7 @@ public class bstTest
          System.out.println(bst.getMin());
          System.out.println(bst.getMax());
          System.out.println(bst);
-         bst.remove(5);
+         bst.remove(0);
          bst.printTree();
          System.out.println(" Depth: " + bst.getDepth());
          System.out.println(bst.removeMin());

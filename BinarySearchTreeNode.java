@@ -71,7 +71,7 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
             if (right == null) {
                 return null;
             } else {
-                return right.search(element);
+                 return right.search(element);
             }
         } else if (element.compareTo(data) < 0){
             if (left == null) {

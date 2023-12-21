@@ -1,9 +1,9 @@
 import java.util.Arrays;
 /**
- * Write a description of class MyHeap here.
+ * This creates a min heap representation in an array
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author (Austin Ransford)
+ * @version (December 19, 2023)
  */
 public class MyHeap<E extends Comparable<E>>
 {
@@ -22,8 +22,7 @@ public class MyHeap<E extends Comparable<E>>
 
     /**
      * gives the size of the heap
-     *
-     * 
+     * @return the size of the heap as an int value
      */
     public int size(){
         return lastNodeIndex + 1;
@@ -38,6 +37,10 @@ public class MyHeap<E extends Comparable<E>>
         return size() == 0;
     }
     
+    /**
+     * adds an element to the heap 
+     * @param element added to the heap
+     */
     public void add(E element){
         if (isEmpty()){
             heapArray[0] = element;
@@ -58,6 +61,10 @@ public class MyHeap<E extends Comparable<E>>
         }
     }
     
+    /**
+     * removes the minimum of the  heap. Or removes from the root or first index of the heap
+     * @returns the value removed
+     */
     public E removeMin(){
         if (isEmpty()){
             return null;
@@ -89,6 +96,10 @@ public class MyHeap<E extends Comparable<E>>
         }
     }
     
+    /**
+     * conversts the heap into a string to be printed
+     * @returns a string representation of the array 
+     */
     public String toString(){
         String newString = "";
         for (int i = 0; i < size(); i++){
